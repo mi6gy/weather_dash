@@ -23,7 +23,7 @@ $(document).ready(function () {
         //http://api.openweathermap.org/data/2.5/uvi?appid={appid}&lat={lat}&lon={lon}
         $.ajax({
             type: 'GET',
-            url: `http://api.openweathermap.org/data/2.5/uvi?appid=d0122da0328e6ddb9233584d21755ef6&&lat=${lat}&lon=${lon}`,
+            url: `https://api.openweathermap.org/data/2.5/uvi?appid=d0122da0328e6ddb9233584d21755ef6&&lat=${lat}&lon=${lon}`,
             dataType: 'json'
         }).then(function (res) {
             var uv = $("<p>").text("UV Index: " + res.value)
@@ -38,7 +38,7 @@ $(document).ready(function () {
     function getForecast(city) {
         $.ajax({
             type: 'GET',
-            url: `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=d0122da0328e6ddb9233584d21755ef6&units=imperial`,
+            url: `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=d0122da0328e6ddb9233584d21755ef6&units=imperial`,
             dataType: 'json'
         }).then(function (data) {
 
@@ -92,7 +92,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: 'GET',
-            url: "http://api.openweathermap.org/data/2.5/weather?q=" + value + "&appid=d0122da0328e6ddb9233584d21755ef6&units=imperial",
+            url: "https://api.openweathermap.org/data/2.5/weather?q=" + value + "&appid=d0122da0328e6ddb9233584d21755ef6&units=imperial",
             dataType: 'json'
         }).then(function (res) {
             console.log('dta', res)
@@ -121,7 +121,7 @@ $(document).ready(function () {
             var wind = $("<p>").text("Wind Speed: " + res.wind.speed);
             var humid = $("<p>").text("Humidity: " + res.main.humidity);
             
-            var img = $("<img>").attr("src", "http://openweathermap.org/img/w/" + res.weather[0].icon + ".png")
+            var img = $("<img>").attr("src", "https://openweathermap.org/img/w/" + res.weather[0].icon + ".png")
             cardL.append(temp, wind, humid,);
             cardP.append(city, img, cardL);
             $("#current").append(cardP);
