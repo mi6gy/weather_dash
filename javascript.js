@@ -6,8 +6,7 @@
 //   with data, grab necessary info and display it onto html
 /// - AJAX for 5 day forcast 
 // with data, grab info, and display it in 5 day forcast div
-//http://api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&appid=7ba67ac190f85fdba2e2dc6b9d32e93c&units=imperial",
-
+//http://api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&appid=7ba67ac190f85fdba2e2dc6b9d32e93c&units=imperial"
 
 
 $(document).ready(function () {
@@ -51,10 +50,10 @@ $(document).ready(function () {
                 if (list[i].dt_txt.indexOf("15:00:00") !== -1) {
                     console.log("WEATHER", list[i].main, new Date(list[i].dt_txt).toLocaleDateString());
                     var cardPfive = $("<div>").addClass("fiveDay");
-                    var name = $("<h3>").text(list[i].name, new Date().toLocaleDateString()); 
+                    var name = $("<h3>").text(city, new Date().toLocaleDateString()); 
                     var temp = $("<div>").text(list[i].main.temp, new Date().toLocaleDateString());
                     var humidity = $("<p>").text(list[i].main.humidity, new Date().toLocaleDateString());
-                    var windSpeed = $("<div>").text(list[i].main.temp, new Date().toLocaleDateString());
+                    
                     
                     cardPfive.append(name, temp, humidity);
                     $("#fiveDay").append(cardPfive);
