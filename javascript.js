@@ -27,7 +27,7 @@ $(document).ready(function () {
             url: `http://api.openweathermap.org/data/2.5/uvi?appid=d0122da0328e6ddb9233584d21755ef6&&lat=${lat}&lon=${lon}`,
             dataType: 'json'
         }).then(function (res) {
-                     var uv = $("<p>").text("UV Index: " + res.value)
+            var uv = $("<p>").text("UV Index: " + res.value)
             $(".currentCardL").append(uv);
             // use color text from planner if statment
         })
@@ -36,24 +36,47 @@ $(document).ready(function () {
 
 
     //forecast
-    function getForecast(city){
-        console.log('hello')
+    function getForecast(city) {
         $.ajax({
             type: 'GET',
             url: `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=d0122da0328e6ddb9233584d21755ef6&units=imperial`,
             dataType: 'json'
-        }).then(function(data){
-               
-                var list = data.list;
-                for (let i = 0; i < list.length; i++) {
-                    const element = list[i];
-                  
+        }).then(function (data) {
 
-                    if(list[i].dt_txt.indexOf("15:00:00")!==-1){
-                        console.log("WEATHER", list[i].main.temp, new Date(list[i].dt_txt).toLocaleDateString())
-                    }
+            var list = data.list;
+            for (let i = 0; i < list.length; i++) {
+                const element = list[i];
+
+
+                if (list[i].dt_txt.indexOf("15:00:00") !== -1) {
+                    console.log("WEATHER", list[i].main, new Date(list[i].dt_txt).toLocaleDateString());
+                    var cardPfive = $("<div>").addClass("fiveDay");
+                    var name = $("<h3>").text(list[i].name, new Date().toLocaleDateString()); 
+                    var temp = $("<div>").text(list[i].main.temp, new Date().toLocaleDateString());
+                    var humidity = $("<p>").text(list[i].main.humidity, new Date().toLocaleDateString());
+                    var windSpeed = $("<div>").text(list[i].main.temp, new Date().toLocaleDateString());
                     
+                    cardPfive.append(name, temp, humidity);
+                    $("#fiveDay").append(cardPfive);
+
+                    // var city = $("<h3>").text(res.name + " , " + new Date().toLocaleDateString())
+                    // var cardP = $("<div>");
+                    // var cardL = $("<div>").addClass("currentCardL");
+                    // var wind = $("<p>").text("Wind Speed: " + res.wind.speed);
+                    // var humid = $("<p>").text("Humidity: " + res.main.humidity);
+                    // var temp = $("<p>").text("Temperature: " + res.main.temp);
+                    // var img = $("<img>").attr("src", "http://openweathermap.org/img/w/" + res.weather[0].icon + ".png")
+                    // cardL.append(wind, humid, temp,);
+                    // cardP.append(city, img, cardL);
+                    // $("#current").append(cardP);
+
+
+
+
+
                 }
+
+            }
         })
 
     }
@@ -95,11 +118,12 @@ $(document).ready(function () {
             var city = $("<h3>").text(res.name + " , " + new Date().toLocaleDateString())
             var cardP = $("<div>");
             var cardL = $("<div>").addClass("currentCardL");
+            var temp = $("<p>").text("Temperature: " + res.main.temp);
             var wind = $("<p>").text("Wind Speed: " + res.wind.speed);
             var humid = $("<p>").text("Humidity: " + res.main.humidity);
-            var temp = $("<p>").text("Temperature: " + res.main.temp);
+            
             var img = $("<img>").attr("src", "http://openweathermap.org/img/w/" + res.weather[0].icon + ".png")
-            cardL.append(wind, humid, temp,);
+            cardL.append(temp, wind, humid,);
             cardP.append(city, img, cardL);
             $("#current").append(cardP);
 
