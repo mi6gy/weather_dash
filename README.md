@@ -4,4 +4,4 @@ As a traveler, I want to see the weather outlook for multiple cities so that I c
 ## Technology 
 This app uses the JQuery library to make an Ajax call to the weather api using the city input by the user.
 
-
+Click here to try: [Weather Dash](https://mi6gy.github.io/weather_dash/)
